@@ -46,7 +46,7 @@ def copy_image(image_id, dest_subdir):
         print(f"No se encontró la imagen: {src}")
 
 def save_label(image_id, content, dest_subdir):
-    path = os.path.join(DATA2_DIR, dest_subdir, "labels", f"{image_id}.txt")
+    path = os.path.join(DATA2_DIR, dest_subdir, "labels_original", f"{image_id}.txt")
     with open(path, "w") as f:
         if content.strip():
             f.write(content.strip() + "\n")
