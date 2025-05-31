@@ -43,20 +43,26 @@ def convert_label_format(label_path, image_path):
                 keypoints_raw = parts[6:]
                 keypoints = []
                 for i in range(0, len(keypoints_raw), 3):
-                    x, y, c = float(keypoints_raw[i]), float(keypoints_raw[i+1]), float(keypoints_raw[i+2])
-                    if c == 0.0:
+                    x = float(keypoints_raw[i])
+                    y = float(keypoints_raw[i + 1])
+                    v = float(keypoints_raw[i + 2])
+                    if v == 0.0:
                         keypoints.extend([0.0, 0.0, 0])
                     else:
-                        keypoints.extend([x / img_w, y / img_h, 2])
+                        keypoints.extend([
+                            round(x / img_w, 6),
+                            round(y / img_h, 6),
+                            int(2)
+                        ])
 
-                lines.append(" ".join(
-                    [str(class_id), f"{x_center:.6f}", f"{y_center:.6f}", f"{w_norm:.6f}", f"{h_norm:.6f}"] +
-                    [f"{kp:.6f}" if isinstance(kp, float) else str(kp) for kp in keypoints]
-                ))
+                line = [str(class_id), f"{x_center:.6f}", f"{y_center:.6f}", f"{w_norm:.6f}", f"{h_norm:.6f}"] + \
+                       [str(kp) for kp in keypoints]
+                lines.append(" ".join(line))
         return lines
     except Exception as e:
         print(f"Error en {label_path}: {e}")
         return []
+
 
 # Procesar cada subset
 for subset in SUBSETS:
