@@ -1,0 +1,60 @@
+Los archivos csv tienen dos columnas: Id, Predicted
+
+
+Id:
+Identificador único de la imagen.
+
+
+Predicted:
+Cadena que agrupa todas las detecciones de animales en esa imagen. Cada detección sigue el formato:
+[cat_id x_min y_min width height score x1 y1 c1 x2 y2 c2 … x_K y_K c_K]
+
+- cat_id: especie o clase de animal
+- x_min, y_min, width, height: Bounding box
+- score: Confianza global de la detección (entre 0 y 1).
+- x_i, y_i, c_i: Coordenadas (x,y) de cada keypoint i y su confianza c_i (0 si no es visible). Se concatenan para todos los K puntos en orden fijo.
+
+Las instancias se separan con un punto y coma ;
+
+
+------
+
+Descripción de los keypoints
+
+Keypoint  Description
+1         Left Eye	
+2         Right Eye
+3         Nose	
+4         Neck
+5         Root of Tail	
+6         Left Shoulder
+7         Left Elbow	
+8         Left Front Paw
+9         Shoulder	
+10        Right Elbow
+11        Right Front Paw	
+12        Left Hip
+13        Left Knee	
+14        Left Back Paw
+15        Right Hip	
+16        Right Knee
+17        Right Back Paw		
+
+------
+
+Ejemplo:
+Supongamos que la imagen 58503 tiene dos animales detectados:
+
+1. Animal A
+- category_id=53, bbox [113,81,420,574], score=0.87
+- keypoints: (399,131,2), (372,140,2), …, (240,599,2)
+
+2. Animal B
+- category_id=53, bbox [501,66,464,608], score=0.75
+- keypoints: (586,98,2), (520,119,2), …, (676,567,2)
+
+
+La fila en el CSV quedaría:
+
+Id,Predicted
+58503,53 113 81 420 574 0.87 399 131 2 372 140 2 … 240 599 2; 53 501 66 464 608 0.75 586 98 2 520 119 2 … 676 567 2
