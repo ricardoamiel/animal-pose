@@ -8,10 +8,6 @@ DATA2_DIR = "data2"     # Carpeta de salida para estructura organizada
 TRAINING_CSV = os.path.join("training.csv")
 EVAL_CSV = os.path.join("eval.csv")
 
-# Parámetros
-SEED = 42
-SPLIT_RATIO = 0.8
-
 # Crear subcarpetas
 subdirs = [
     "train/images", "train/labels_original",
