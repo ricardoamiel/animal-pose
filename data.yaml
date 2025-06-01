@@ -1,7 +1,6 @@
 path: data2
 
 train: train
-val: val
 
 nc: 50
 names: [
