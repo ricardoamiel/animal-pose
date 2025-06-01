@@ -10,8 +10,8 @@ catid_to_classid = {cat_id: idx for idx, cat_id in enumerate(cat_ids)}
 
 # Rutas
 DATA2_DIR = "data2"
-#SUBSETS = ["train", "val", "test"]
-SUBSETS = ["train", "test"]
+SUBSETS = ["train", "val", "test"]
+#SUBSETS = ["train", "test"]
 
 def convert_label_format(label_path, image_path):
     try:
